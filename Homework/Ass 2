@@ -1,0 +1,33 @@
+public class Salary {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		String employeeName = "Peter Madison";
+		double grossSalary = 2000.0;
+		
+		double stateTaxRate = 0.284;
+		double stateTaxes = grossSalary*stateTaxRate;
+		stateTaxes = Math.round(stateTaxes);
+		
+		double netSalary;
+		
+		double grossSalaryAfterStateTaxes = grossSalary - stateTaxes;
+		double personalTax;
+        if (grossSalary - stateTaxes - 7000 > 0) {
+            personalTax = 0.10 * (grossSalary - stateTaxes - 7000);
+        } else {
+            personalTax = 0;
+        }
+
+        netSalary = grossSalary - stateTaxes - personalTax;
+
+        stateTaxes = Math.round(stateTaxes);
+        personalTax = Math.round(personalTax);
+        netSalary = Math.round(netSalary);
+
+		System.out.println("The employee " +employeeName + " with Gross salary of: "+grossSalary+ "MKD. will get NET salary: "+netSalary+"MKD");
+		System.out.println("State taxes are: " +stateTaxes+ "MKD ");
+		System.out.println("Personal tax is: "+personalTax+ "MKD. ");
+		}
+	}
