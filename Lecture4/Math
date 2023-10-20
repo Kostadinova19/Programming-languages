@@ -1,0 +1,46 @@
+import java.lang.Math;
+public class Math1 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		double decimalVariable = 2.5;
+
+        double sineValue = Math.sin(decimalVariable);
+        double cosineValue = Math.cos(decimalVariable);
+        double tangentValue = Math.tan(decimalVariable);
+        double cotangentValue = 1 / tangentValue;
+
+        double squareRootValue = Math.sqrt(decimalVariable);
+        double squareValue = Math.pow(decimalVariable, 2);
+        double cubeValue = Math.pow(decimalVariable, 3);
+
+        double smallestLargerInteger = Math.ceil(decimalVariable);
+
+        double largestSmallerInteger = Math.floor(decimalVariable);
+
+        double circleRadius = decimalVariable;
+        double circleArea = Math.PI * Math.pow(circleRadius, 2);
+
+        double piValue = Math.PI;
+        double eValue = Math.E;
+        
+        System.out.println("Sine: " + sineValue);
+        System.out.println("Cosine: " + cosineValue);
+        System.out.println("Tangent: " + tangentValue);
+        System.out.println("Cotangent: " + cotangentValue);
+
+        System.out.println("Square: " + squareValue);
+        System.out.println("Square Root: " + squareRootValue);
+        System.out.println("Cube: " + cubeValue);
+
+        System.out.println("Smallest Larger integer: " + smallestLargerInteger);
+        System.out.println("Largest Smaller integer: " + largestSmallerInteger);
+
+        System.out.println("Area: " + circleArea);
+
+        System.out.println("Pi: " + piValue);
+        System.out.println("E: " + eValue);
+    
+	}
+
+}
