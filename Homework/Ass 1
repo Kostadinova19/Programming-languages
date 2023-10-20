@@ -1,0 +1,18 @@
+public class RandomNumberInfo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		double randomNumber = Math.random() *100;
+		
+		int intPart = (int) randomNumber;
+		double decimalPart = randomNumber - intPart;
+		char character = (char)intPart;
+		
+		System.out.printf("From 0...100, the computer picked %.2f%n ", randomNumber);
+		System.out.printf("Integer part of this number is:  %d%n " , intPart);
+		System.out.printf("Decimal part of this number is:  %.8f%n " ,decimalPart);
+		System.out.printf("Character with code: %d is: %c%n", intPart,character);
+		
+	}
+}
