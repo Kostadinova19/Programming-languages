@@ -1,0 +1,32 @@
+import Egg.Ostrich_Egg;
+
+public class Egg {
+	public void EGG() {
+		System.out.println("Each egg has an albumen and a yolk");
+		
+		
+	}
+	public void print() {
+		System.out.println("The egg is a nutritional product");
+		
+	}
+		 static class Ostrich_Egg extends Egg {
+			public void EGG() {
+				System.out.println("The albumen and yolk an OSTRICH egg are the largest");
+			}
+			public void print() {
+				System.out.println("The egg is a nutritional product");
+			}
+		}
+
+		
+		
+		public static void main(String[] args) {
+			Egg henegg = new Egg();
+			Ostrich_Egg ostrichegg = new Ostrich_Egg();
+
+			henegg.EGG();
+			henegg.print();
+			ostrichegg.EGG();
+		}
+	}
