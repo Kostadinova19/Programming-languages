@@ -1,5 +1,5 @@
 
-public class Exercise02 {
+public class Exercise2 {
 	
 	static class egg{
 		int category;
