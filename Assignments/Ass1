@@ -1,0 +1,57 @@
+package exercise;
+
+public class LjupkaKostadinova_5462_Ass1 {
+
+	public static void main(String[] args) {
+	
+		System.out.println("First argument "+args[0]);
+		
+		double numbers[]=new double[5];
+		String operation=args[0];
+		
+		try {
+			for(int i=0; i<5; i++) {
+				numbers[i]=Double.parseDouble(args[i+1]);
+			
+			}
+		}catch (NumberFormatException e) {
+			System.out.println("Invalid format.");
+			return;
+		}
+	
+	
+	
+	if(operation.equals("MIN")) {
+		double min= findMin(numbers);
+		System.out.println("Minimum number: "+min);
+	}
+	if(operation.equals("MAX")) {
+		double max= findMax(numbers);
+		System.out.println("Maximum number: "+max);
+	}else {
+		System.out.println("\nInavlid operation");
+	}
+}
+	public static double findMax(double[] numbers) {
+	double max=numbers[0];
+	for(int i=0; i<numbers.length; i++) {
+		if (numbers[i]>max){
+			max=numbers[i];
+		}
+	}
+		return max;
+	}
+	
+
+		public static double findMin(double[]numbers) {
+			double min=numbers[0];
+			for(int i=0; i<numbers.length; i++) {
+				if (numbers[i]>min){
+					min=numbers[i];
+				}
+			}
+				return min;
+}
+	
+		}
+	
