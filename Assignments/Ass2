@@ -1,0 +1,75 @@
+package exercise;
+
+import java.util.Random;
+
+// TODO Auto-generated method stub
+
+public class LjupkaKostadinova_5462_Ass2 {
+	class Player {
+		String name;
+		int points;
+		String team;
+
+		public Player(String name, String team) {
+			this.name = name;
+			this.team = team;
+			this.points = (int) (Math.random() * 100) % 50;
+		}
+
+		public String getName() {
+			return name;
+		}
+
+		public int getPoints() {
+			return points;
+		}
+
+		public void setName(String name) {
+			this.name = name;
+		}
+
+		public void setPoints(int points) {
+			this.points = points;
+		}
+		public static Player MVP(Player[] players) {
+			Player mvp = players[0];
+			for (Player player : players) {
+				if (player.getPoints() > mvp.getPoints()) {
+					mvp = player;
+				}
+			}
+			return mvp;
+		}
+	}
+		
+
+		public static void main(String[] args) {
+			Player[] miamiHeat = new Player[5];
+			Player[] laLakers = new Player[5];
+
+			int miamiHeatScore = 0;
+			int laLakersScore = 0;
+
+			for (int i = 0; i < 5; i++) {
+				miamiHeatScore += miamiHeat[i].getPoints();
+				laLakersScore += laLakers[i].getPoints();
+
+				System.out.println(miamiHeat[i].getName() + " " + miamiHeat[i].getPoints() + " points");
+				System.out.println(laLakers[i].getName() + " " + laLakers[i].getPoints() + " points");
+			}
+
+			System.out.println("Miami Heat: L.A. Lakers = " + miamiHeatScore + " : " + laLakersScore + ".");
+			if (miamiHeatScore > laLakersScore) {
+				System.out.println("The winner is Miami Heat");
+			} else if (laLakersScore > miamiHeatScore) {
+				System.out.println("The winner is L.A. Lakers");
+			} else {
+				System.out.println("It's a tie!");
+			}
+
+			Player mvp = Player.MVP(new Player[] { miamiHeat[0], miamiHeat[1], miamiHeat[2], miamiHeat[3], miamiHeat[4],
+					laLakers[0], laLakers[1], laLakers[2], laLakers[3], laLakers[4] });
+			System.out
+					.println("MVP is " + mvp.getName() + " from " + mvp.team + " with " + mvp.getPoints() + " points.");
+		}
+}
