@@ -1,0 +1,125 @@
+import java.util.Random;
+
+interface Average {
+    float average();
+}
+
+interface Scholarship {
+    float rate();
+}
+
+class Person {
+    String p_name;
+
+    public Person(String p_name) {
+        this.p_name = p_name;
+    }
+}
+
+class Employee extends Person implements Average {
+    int no_salaries;
+    int[] salary = new int[12];
+
+    public Employee(String name, int n) {
+        super(name);
+        this.no_salaries = n;
+        Random rand = new Random();
+        for (int i = 0; i < 12; i++) {
+            this.salary[i] = rand.nextInt(30001);
+        }
+    }
+
+    @Override
+    public float average() {
+        if (no_salaries == 0) {
+            return 0;
+        }
+        int sum = 0;
+        for (int i = 0; i < no_salaries; i++) {
+            sum += salary[i];
+        }
+        return (float) sum / no_salaries;
+    }
+}
+
+class Student extends Person implements Average, Scholarship {
+    int no_grades;
+    Employee parent1, parent2;
+    int[] grade = new int[6];
+
+    public Student(String name, int n, Employee r1, Employee r2) {
+        super(name);
+        this.no_grades = n;
+        this.parent1 = r1;
+        this.parent2 = r2;
+        Random rand = new Random();
+        for (int i = 0; i < 6; i++) {
+            this.grade[i] = rand.nextInt(6) + 5; // Generates numbers between 5 and 10
+        }
+    }
+
+    @Override
+    public float average() {
+        if (no_grades == 0) {
+            return 0;
+        }
+        int sum = 0;
+        for (int i = 0; i < no_grades; i++) {
+            sum += grade[i];
+        }
+        return (float) sum / no_grades;
+    }
+
+    @Override
+    public float rate() {
+        float gpa = average();
+        float parentAvgSalaries = (parent1.average() + parent2.average()) / 2.0f;
+        return gpa * 6 + (60000 - parentAvgSalaries) * 4;
+    }
+
+    public void displayStudentData() {
+        System.out.println("Name: " + p_name);
+        System.out.println("GPA: " + average());
+        System.out.println("First Parent: " + parent1.p_name + ", Average Salary: " + parent1.average());
+        System.out.println("Second Parent: " + parent2.p_name + ", Average Salary: " + parent2.average());
+        System.out.println("Scholarship Points: " + rate());
+    }
+
+
+    public static void main(String[] args) {
+        // Create array of 6 employees (parents)
+        Employee[] parents = new Employee[6];
+        parents[0] = new Employee("Parent1", 4);
+        parents[1] = new Employee("Parent2", 3);
+        parents[2] = new Employee("Parent3", 5);
+        parents[3] = new Employee("Parent4", 0); // Unemployed
+        parents[4] = new Employee("Parent5", 0); // Unemployed
+        parents[5] = new Employee("Parent6", 6);
+
+        // Create array of 3 students with 2 parents each
+        Student[] students = new Student[3];
+        students[0] = new Student("Student1", 6, parents[0], parents[1]);
+        students[1] = new Student("Student2", 6, parents[2], parents[3]);
+        students[2] = new Student("Student3", 6, parents[4], parents[5]);
+
+        // Output student data
+        for (Student student : students) {
+            student.displayStudentData();
+            System.out.println();
+        }
+
+        // Announce the student that will get the scholarship
+        Student scholarshipRecipient = findScholarshipRecipient(students);
+        System.out.println("The student who will receive the scholarship is: " + scholarshipRecipient.p_name);
+    }
+
+    private static Student findScholarshipRecipient(Student[] students) {
+        Student maxScholarshipStudent = students[0];
+        for (int i = 1; i < students.length; i++) {
+            if (students[i].rate() > maxScholarshipStudent.rate()) {
+                maxScholarshipStudent = students[i];
+            }
+        }
+        return maxScholarshipStudent;
+    }
+}
