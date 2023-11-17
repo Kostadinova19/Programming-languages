@@ -85,9 +85,7 @@ class Student extends Person implements Average, Scholarship {
         System.out.println("Scholarship Points: " + rate());
     }
 
-
     public static void main(String[] args) {
-        // Create array of 6 employees (parents)
         Employee[] parents = new Employee[6];
         parents[0] = new Employee("Parent1", 4);
         parents[1] = new Employee("Parent2", 3);
@@ -96,23 +94,20 @@ class Student extends Person implements Average, Scholarship {
         parents[4] = new Employee("Parent5", 0); // Unemployed
         parents[5] = new Employee("Parent6", 6);
 
-        // Create array of 3 students with 2 parents each
+        
         Student[] students = new Student[3];
         students[0] = new Student("Student1", 6, parents[0], parents[1]);
         students[1] = new Student("Student2", 6, parents[2], parents[3]);
         students[2] = new Student("Student3", 6, parents[4], parents[5]);
 
-        // Output student data
+        
         for (Student student : students) {
             student.displayStudentData();
             System.out.println();
         }
-
-        // Announce the student that will get the scholarship
         Student scholarshipRecipient = findScholarshipRecipient(students);
         System.out.println("The student who will receive the scholarship is: " + scholarshipRecipient.p_name);
     }
-
     private static Student findScholarshipRecipient(Student[] students) {
         Student maxScholarshipStudent = students[0];
         for (int i = 1; i < students.length; i++) {
