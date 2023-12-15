@@ -34,7 +34,6 @@ public class Demo {
 
     public static void main(String[] args) {
         List<String> names = List.of("Pavel", "Kristina", "Bojan", "Petar", "Pavlina", "Petra");
-
         List<Student> students = names.stream()
                 .map(name -> createStudent(name, new Random().nextInt(10000) + 1))
                 .collect(Collectors.toList());
