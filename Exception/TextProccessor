@@ -1,0 +1,38 @@
+package exception;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+	public class TextProcessor {
+	    public static void main(String[] args) {
+	        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+	        
+	        String text = null;
+	        do {
+	            System.out.print("Input the text. To finish inputting, input end: ");
+	            try {
+	                text = reader.readLine();
+	                
+	                if (!text.equals("END")) {
+	                    int length = text.length();
+	                    int weight = calculateWeight(text);
+	                    
+	                    System.out.println(text + " has " + length + " characters, and its weight is " + weight);
+	                }
+	            } catch (IOException e) {
+	                e.printStackTrace();
+	            }
+	        } while (!text.equals("end"));
+
+	        System.out.println("Thank you for using the program.");
+	    }
+
+	    private static int calculateWeight(String text) {
+	        int weight = 0;
+	        for (int i = 0; i < text.length(); i++) {
+	            weight += (int) text.charAt(i);
+	        }
+	        return weight;
+	    }
+	}
