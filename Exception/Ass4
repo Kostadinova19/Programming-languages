@@ -1,0 +1,80 @@
+package exception;
+
+public class ACCOUNT {
+    private String bank;
+    private int amount;
+    public ACCOUNT(String bank, int initialAmount) {
+        this.bank = bank;
+        this.amount = initialAmount;
+    }
+    public String getBank() {
+        return bank;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void add(int plus) {
+        amount += plus;
+    }
+
+    public void withdraw(int minus) {
+        if (minus <= amount) {
+            amount -= minus;
+        } else {
+            System.out.println("There is not sufficient amount on the account.");
+        }
+    }
+}
+
+package exception;
+
+public class ATM {
+    public static void main(String[] args) {
+        if (args.length != 2) {
+            System.out.println("Usage: java ATM <bank_name> <initial_amount>");
+            return;
+        }
+        String bank = args[0];
+        int initialAmount = Integer.parseInt(args[1]);
+
+        ACCOUNT myAccount = new ACCOUNT(bank, initialAmount);
+
+        while (myAccount.getAmount() > 0) {
+            System.out.println("\nChoose from the menu");
+            System.out.println("1 = Bank overview");
+            System.out.println("2 = Amount overview");
+            System.out.println("3 = Cash addition");
+            System.out.println("4 = Cash withdrawal");
+            System.out.println("5 = Account clearing");
+
+            int choice = Integer.parseInt(System.console().readLine());
+            switch (choice) {
+                case 1:
+                    System.out.println("Your account is in the bank: " + myAccount.getBank());
+                    break;
+                case 2:
+                    System.out.println("On your account you have " + myAccount.getAmount() + " den.");
+                    break;
+                case 3:
+                    System.out.print("Input the amount to add: ");
+                    int addAmount = Integer.parseInt(System.console().readLine());
+                    myAccount.add(addAmount);
+                    break;
+                case 4:
+                    System.out.print("Input the amount to withdraw: ");
+                    int withdrawAmount = Integer.parseInt(System.console().readLine());
+                    myAccount.withdraw(withdrawAmount);
+                    break;
+                case 5:
+                    System.out.println("You have withdrawn the entire amount from the account.");
+                    myAccount.withdraw(myAccount.getAmount()); // Withdraw the entire amount
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please choose again.");
+            }
+        }
+        System.out.println("Your account balance is zero. Exiting...");
+    }
+}
